@@ -37,7 +37,11 @@ class RegManager:
         SetValueEx(key, self.value_name, 0, REG_SZ, save_data)
 
     def handler(self, action: str, save_data: str = None) -> str or None:
+        return_data = None
         if not self.__validate_reg():
             self.__init_reg()
-        return_data = getattr(self, f'__{action}_reg')(save_data)
+        if action == 'read':
+            return_data = self.__read_reg()
+        elif action == 'save':
+            self.__save_reg(save_data)
         return return_data
