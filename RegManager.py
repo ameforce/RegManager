@@ -2,8 +2,18 @@ from winreg import *
 
 
 class RegManager:
-    def __init__(self, key_path: str, value_name: str):
+    def __init__(self, hive: str, key_path: str, value_name: str):
         self.hive = HKEY_CURRENT_USER
+        if hive == 'HKEY_CLASSES_ROOT':
+            self.hive = HKEY_CLASSES_ROOT
+        elif hive == 'HKEY_CURRENT_USER':
+            self.hive = HKEY_CURRENT_USER
+        elif hive == 'HKEY_LOCAL_MACHINE':
+            self.hive = HKEY_LOCAL_MACHINE
+        elif hive == 'HKEY_USERS':
+            self.hive = HKEY_USERS
+        elif hive == 'HKEY_CURRENT_CONFIG':
+            self.hive = HKEY_CURRENT_CONFIG
         self.key_path = key_path
         self.value_name = value_name
 
