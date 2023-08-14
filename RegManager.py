@@ -42,6 +42,8 @@ class RegManager:
             self.__init_reg()
         if action == 'read':
             return_data = self.__read_reg()
+            if return_data == '':
+                return_data = None
         elif action == 'save':
             self.__save_reg(save_data)
         return return_data
